@@ -3,7 +3,7 @@
 </template>
 
 <script>
-
+document.title = 'Аналитика';
 export default {
 }
 </script>

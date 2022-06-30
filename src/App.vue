@@ -1,8 +1,8 @@
 <template>
-  <nav>
-    <router-link to="/">Вход</router-link> |
-    <router-link to="/Analitics">Аналитика</router-link>
-  </nav>
+<!--  <nav>-->
+<!--    <router-link to="/">Вход</router-link> |-->
+<!--    <router-link to="/Analitics">Аналитика</router-link>-->
+<!--  </nav>-->
   <router-view/>
 </template>
 
