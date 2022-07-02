@@ -1,23 +1,23 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router";
 import AuthPage from "@/pages/AuthPage";
 import AnalyticsPage from "@/pages/AnalyticsPage";
 
 const routes = [
   {
-    path: '/',
-    name: 'Auth',
-    component: AuthPage
+    path: "/",
+    name: "Auth",
+    component: AuthPage,
   },
   {
-    path: '/Analitics',
-    name: 'Analitics',
-    component: AnalyticsPage
-  }
-]
+    path: "/Analytics",
+    name: "Analytics",
+    component: AnalyticsPage,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
