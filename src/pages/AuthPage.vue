@@ -49,8 +49,7 @@ export default {
             this.info = response.data.message;
             if (this.info === "ok") {
               localStorage.setItem("leadhit-site-id", input);
-              this.$router.push("/Analitics");
-              document.title = "Аналитика";
+              this.$router.push("/Analytics");
             }
           })
           .catch((error) => (this.errorInfo = error.message));
@@ -63,7 +62,7 @@ export default {
 <style lang="scss" scoped>
 $primary-color: #2c3e50;
 $border-active: #5b80a8;
-$bg-color: rgba(255, 68, 2);
+$bg-color: #ff4402;
 
 .auth {
   display: flex;
