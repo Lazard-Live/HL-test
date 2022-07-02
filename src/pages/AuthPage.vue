@@ -2,59 +2,69 @@
   <div class="auth">
     <h1>LeadHit</h1>
     <form class="auth__form" onsubmit="return false">
-      <el-input type="text"
-                class="auth__input"
-                v-model="id"
-                placeholder="id сайта"
-                required
-                minlength="24"
-                maxlength="24"
-                pattern="[a-zA-Z0-9]"
+      <input
+        v-on:keypress="errorInfo = ''"
+        type="text"
+        class="auth__input"
+        v-model="id"
+        placeholder="id сайта"
+        maxlength="24"
       />
-      <el-button @click="authGet(id)">Вход</el-button>
+      <button class="auth__button" @click="authGet(id)">Войти</button>
     </form>
+
+    <div class="auth__message">{{ errorInfo }}</div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 let headers = {
-  'Api-Key': '5f8475902b0be670555f1bb3:eEZn8u05G3bzRpdL7RiHCvrYAYo',
-  'Leadhit-Site-Id': ''
-}
+  "Api-Key": "5f8475902b0be670555f1bb3:eEZn8u05G3bzRpdL7RiHCvrYAYo",
+  "Leadhit-Site-Id": "",
+};
 
-document.title = 'Авторизация';
+document.title = "Авторизация";
 
 export default {
   data() {
     return {
-      id: ''
-    }
+      id: "",
+      errorInfo: "",
+    };
   },
   methods: {
     authGet: function (input) {
-      headers['Leadhit-Site-Id'] = input;
-      // Проверка на длину
-      axios
-          .get('https://track-api.leadhit.io/client/test_auth', {headers})
-          .then(response => {
+      if (input.length === 0) {
+        this.errorInfo = "Введите ID сайта";
+      } else if (input.length !== 24) {
+        this.errorInfo = "ID сайта должен содержать 24 символа";
+      } else {
+        headers["Leadhit-Site-Id"] = input;
+
+        axios
+          .get("https://track-api.leadhit.io/client/test_auth", { headers })
+          .then((response) => {
             this.info = response.data.message;
             if (this.info === "ok") {
-              localStorage.setItem('leadhit-site-id', input);
-              this.$router.push('/Analitics')
-              document.title = 'Аналитика';
-            } else {
-              alert("Неверный ID!")
+              localStorage.setItem("leadhit-site-id", input);
+              this.$router.push("/Analitics");
+              document.title = "Аналитика";
             }
           })
-          .catch(error => alert(error))
+          .catch((error) => (this.errorInfo = error.message));
+      }
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+$primary-color: #2c3e50;
+$border-active: #5b80a8;
+$bg-color: rgba(255, 68, 2);
+
 .auth {
   display: flex;
   flex-direction: column;
@@ -63,14 +73,47 @@ export default {
 
   &__form {
     display: inline-flex;
-    background: rgba(255, 68, 2, 0.73);
+    background: $bg-color;
     padding: 12px;
     border-radius: 12px;
   }
 
   &__input {
+    transition: 0.5s ease;
+    outline: none;
+    border: 2px solid $primary-color;
+    border-radius: 4px;
     margin-right: 12px;
     min-width: 204px;
+
+    &:focus {
+      border-color: $border-active;
+    }
+  }
+
+  &__button {
+    transition: 0.5s ease;
+    outline: none;
+    background-color: #ffffff;
+    border: 2px solid $primary-color;
+    border-radius: 4px;
+
+    &:focus {
+      border-color: $border-active;
+    }
+
+    &:active {
+      border-color: $border-active;
+    }
+
+    &:hover {
+      color: $border-active;
+      border-color: $border-active;
+    }
+  }
+
+  &__message {
+    margin: 12px;
   }
 }
 </style>
