@@ -1,6 +1,6 @@
 <template>
   <div class="auth">
-    <h1>LeadHit</h1>
+    <img class="auth__logo" alt="LeadHit logo" src="../assets/logo.svg" />
     <form class="auth__form" onsubmit="return false">
       <input
         v-on:keypress="errorInfo = ''"
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$primary-color: #2c3e50;
+$primary-color: #2C3236;
 $border-active: #5b80a8;
 $bg-color: #ff4402;
 
@@ -69,6 +69,10 @@ $bg-color: #ff4402;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &__logo {
+    margin: 24px 0;
+  }
 
   &__form {
     display: inline-flex;
@@ -91,9 +95,10 @@ $bg-color: #ff4402;
   }
 
   &__button {
+    color: $primary-color;
     transition: 0.5s ease;
     outline: none;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 2px solid $primary-color;
     border-radius: 4px;
 

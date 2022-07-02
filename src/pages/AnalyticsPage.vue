@@ -99,7 +99,7 @@ export default {
           categoryXField: "date",
           tooltip: am5.Tooltip.new(root, {
             pointerOrientation: "vertical",
-            labelText: "{valueY}",
+            labelText: "{valueY}: {categoryX}",
           }),
         })
       );
