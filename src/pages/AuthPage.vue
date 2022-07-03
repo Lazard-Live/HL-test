@@ -49,6 +49,7 @@ export default {
             this.info = response.data.message;
             if (this.info === "ok") {
               localStorage.setItem("leadhit-site-id", input);
+              document.title = "Аналитика";
               this.$router.push("/Analytics");
             }
           })
