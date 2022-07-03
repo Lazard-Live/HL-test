@@ -61,7 +61,7 @@ export default {
       // Заголовок таблицы
       chart.topAxesContainer.children.push(
         am5.Label.new(root, {
-          text: "Аналитика",
+          text: "Аналитика по визитам",
           fontSize: 30,
           fontWeight: "500",
           x: am5.p50,
